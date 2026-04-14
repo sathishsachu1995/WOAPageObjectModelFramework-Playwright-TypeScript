@@ -1,0 +1,14 @@
+{
+
+    "testTitle": "TC0001 Testing Tail Gate charges for the TOLL Intermodal carrier",
+    "template": "SKU",
+    "serviceName": "Specific Carrier",
+    "carrier": "Startrack",
+    "numberOfRecords": 96,
+    "pages": "100",
+    "date": "12",
+    "parcelReadyFrom": "10:30 AM",
+    "latestPickupTime": "4:00 PM",
+    "batchName": "BatchShipment001"
+    
+}
