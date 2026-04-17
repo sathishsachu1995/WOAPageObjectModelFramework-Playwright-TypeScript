@@ -4,10 +4,6 @@
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
 /html-report/
 /allure-results/
 /logs/
@@ -16,7 +12,3 @@
 *.zip
 *.mp4
 *.webm
-*.png
-*.jpg
-*.jpeg
-*.gif

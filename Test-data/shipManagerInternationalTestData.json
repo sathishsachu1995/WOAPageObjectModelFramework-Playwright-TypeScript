@@ -1,0 +1,28 @@
+{
+
+    "testTitle": "TC0001 Domestic shipment validation",
+    "template": "SKU",
+    "serviceName": "Specific Carrier",
+    "carrier": "UPS",
+    "numberOfRecords": 1,
+    "pages": "100",
+    "invoiceType": "Upload own invoice",
+    "paperOrDigital": "Paper",
+    "eORI": 100200,
+    "iTNNumber": "",
+    "tAXID": 200300,
+    "invoiceNo": 123456789,
+    "goodsDescription": "Cosmetics items used skin products",
+    "invoiceWeight": 20,
+    "sourceCountry": "AUSTRALIA",
+    "commodityCode": 123456,
+    "quantity": 1,
+    "unitPrice": 50,
+    "date": "24",
+    "parcelReadyFrom": "10:30 AM",
+    "latestPickupTime": "4:00 PM",
+    "batchName": "BatchShipment001",
+    "fromDate": "15",
+    "toDate": "15"
+    
+}

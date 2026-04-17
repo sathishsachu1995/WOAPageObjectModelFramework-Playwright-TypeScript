@@ -164,6 +164,9 @@ export class ShipManagerPage extends PlaywrightWrapper{
                 console.log(`The carriers rates for the record ${i} : ${rates}`);  //Printing the rates in the console
                 }
             }
+            else{
+                await this.getErrorMessage(`//div[@class='warning ng-star-inserted']`)
+            }
 
         }
         
@@ -246,5 +249,83 @@ export class ShipManagerPage extends PlaywrightWrapper{
     async numberOfPages(pages: string): Promise<void>{
         await this.clickButton(`//mat-select[@aria-label='Items per page:']`,`List Box`,`DropDown`)
         await this.clickButton(`//span[text()=${pages}]`,`Number of Pages`,`Button`)
+    }
+
+    async clickingPrinting(fromDate: string,toDate: string){
+        await this.clickButton(`//button[text()='PRINT']`,`Print`,`Button`)
+        await this.clickButton(`(//button[@aria-label='Open calendar'])[1]`,`From Date Calendar Icon`,`Icon`)
+        await this.clickButton(`//div[text()=${fromDate}]`,`From Date`,`Button`)
+        await this.clickButton(`(//button[@aria-label='Open calendar'])[2]`,`To Date Calendar Icon`,`Icon`)
+        await this.clickButton(`//div[text()=${toDate}]`,`To Date`,`Button`)
+        await this.clickButton(`//span[text()='Include ship manager shipments only']`,`Ship Manager Only`,`CheckBox`)
+        await this.clickButton(`//button[text()='Ok']`,`OK`,`Button`)
+    }
+
+    async choosingCommercialInvoiceShipManagerPage(invoiceType: string,paperOrDigital: string,eORI: number,tAXID: number,iTNNumber:string,invoiceNo: number,goodsDescription: string,invoiceWeight: number,sourceCountry: string,commodityCode: number,quantity: number,unitPrice: number): Promise<void>{
+            
+        if (invoiceType === `Help me generate`) {
+            await this.clickButton(`//mat-select[@placeholder='Select Invoice']`,`Commercial Invoice`,`DropDown`)  // commercial invoice dropdown clicked
+            await this.clickButton(`//span[text()='Help Me Generate']`,`Help Me Generate`,`Button`)              // Clicking invoice type Help me generate
+            await this.clickButton(`//button[@class='btn-icon ml-12 ng-star-inserted']`,`Edit`,`Button`)
+            if (paperOrDigital === `Paper`) {
+                await this.clickButton(`//div[text()=' Paper Commercial Invoice (Attach to box) ']`,`PaperInvoice`,`Radio Button`)
+            }
+            else if(paperOrDigital === `Digital`)
+            {
+                await this.clickButton(`//div[text()=' paperless (automatically transmits/Requires stored signature) ']`,`DigitalInvoice`,`Radio Button`)
+            }
+            await this.clearAndType2(`//input[@placeholder='ID/VAT number']`,`Tax ID`,tAXID)
+            await this.clearAndType2(`//input[@placeholder='EORI number']`,`EORI Number`,eORI)
+            const eEI = await this.locatingElement(`//input[@placeholder='(EEI) ITN Number']`)
+            if (eEI && unitPrice>2499) {
+                await this.type(`//input[@placeholder='(EEI) ITN Number']`,`ITN Number`,iTNNumber)
+                await this.mouseHover(`//input[@placeholder='(EEI) ITN Number']//following::div[@class='tooltip-icon'][1]`)
+                const toolTip = await this.getInnerText(`//input[@placeholder='(EEI) ITN Number']//following::div[@class='tooltip-icon'][1]`)
+                console.log(`The toolTip message we are getting: ${toolTip}`);
+            }
+            await this.clearAndType2(`//input[@placeholder='Invoice number']`,`Invoice Number`,invoiceNo)
+            await this.clearAndType(`//input[@placeholder='Search/create contact reference']`,`Goods Description`,goodsDescription)
+            await this.clearAndType2(`//input[@placeholder='Weight']`,`Weight`,invoiceWeight)
+            //await this.clickButton(`//span[@class='mat-select-value-text ng-tns-c19-154 ng-star-inserted']`,`Source Country`,`DropDown`)
+            //await this.clickButton(`(//span[text()='${sourceCountry}'])[3]`,`Source Country`,`Button`)
+            await this.clearAndType2(`//input[@placeholder='Commodity Code']`,`Commodity Code`,commodityCode)
+            await this.clearAndType2(`//input[@placeholder='Quantity']`,`Quantity`,quantity)
+            await this.clearAndType2(`//input[@placeholder='$']`,`Unit Price`,unitPrice)
+            await this.clickButton(`//button[text()='Save']`,`Save`,`Button`)
+            const paperFee = await this.locatingPopup(`//div[@class='cdk-overlay-pane']`)   //paper popup is not coming i have stopped here
+            const errorMessage = await this.locatingElement(`#toast-container`)
+
+            if (paperFee) {
+                const paperFeeMessage = await this.getInnerText(`//div[@class='cdk-overlay-pane']`)
+                console.log(`The Paper Fee Message we are getting : ${paperFeeMessage}`);
+                await this.clickButton(`//button[text()='CONTINUE']`,`Continue`,`Button`)
+                await this.getErrorMessage(`#toast-container`)
+            }
+            else if(errorMessage){
+                await this.getErrorMessage(`#toast-container`)
+            }
+            else{
+                await this.clickButton(`(//button[text()='Next'])[2]`,`Next`,`Button`)
+            }
+            
+            
+        }
+        else if(invoiceType === `I already have one`)
+        {
+            await this.clickButton(`//mat-select[@placeholder='Select Invoice']`,`Commercial Invoice`,`DropDown`)
+            await this.clickButton(`//span[text()=' I Already Have One ']`,`I Already Have One`,`Button`)
+        }
+        else if(invoiceType === `Upload own invoice`)
+        {
+            await this.clickButton(`//mat-select[@placeholder='Select Invoice']`,`Commercial Invoice`,`DropDown`)
+            await this.clickButton(`//span[text()=' Upload your own PDF invoice ']`,`Upload Own Invoice`,`Button`)
+            await this.uploadFile(`input[type='file']`,`Uploads/sathish.pdf`)
+        }
+    }
+
+    async clickingSaveChangesButton(): Promise<void>{
+        await this.clickButton(`//button[text()=' SAVE CHANGES ']`,`Save Changes`,`Button`)
+        await this.clickButton(`//button[text()='Yes']`,`Confirmation`,`Button`)
+
     }
 }

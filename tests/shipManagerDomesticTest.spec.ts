@@ -1,7 +1,7 @@
 import {test } from "@playwright/test";
 import { LoginPage } from "../Pages/LoginPage";
 import { ShipManagerPage } from "../Pages/ShipManagerPage";
-import testData  from "../Test-data/shipManagerTestData.json";
+import testData  from "../Test-data/shipManagerDomesticTestData.json";
 
 
 test.setTimeout(1200000)
@@ -23,6 +23,6 @@ test(`The Test Title ${testData.testTitle}`,async ({page,context}) => {
     //await shipManager.shipManagerScheduleACollection(testData.date,testData.parcelReadyFrom,testData.latestPickupTime)
     await shipManager.shipManagerSpinner()
     await shipManager.shipManagerProcessingNotification()
-    
+    await shipManager.clickingPrinting(testData.fromDate,testData.toDate)
 })
 
