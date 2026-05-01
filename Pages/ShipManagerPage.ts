@@ -37,6 +37,19 @@ export class ShipManagerPage extends PlaywrightWrapper{
         await this.page.waitForTimeout(3000)
     }
 
+    async choosingTransitInsurance(insurance: string,commodityGroup: string,commodityDescription: string,valueOfGoods: number): Promise<void>{
+        if(insurance == `Yes`){
+            await this.clickButton(`//div[text()=" Yes"]`,`Transit Insurance Yes`,`Button`)
+            await this.clickButton(`//span[text()='Select Commodity Group']`,`Commodity Group`,`Drop Down`)
+            await this.clickButton(`//span[contains(text(), '${commodityGroup}')]`,`Commodity Group`,`Button`)
+            await this.clearAndType(`//textarea[@placeholder='Commodity Description']`,`Commodity Description`,commodityDescription)
+            await this.clearAndType2(`//input[@id='number']`,`Value Of Goods`,valueOfGoods)
+        }
+        else{
+            await this.clickButton(`//div[text()=" No"]`,`Transit Insurance No`,`Button`)
+        }
+    }
+
     async quoteDifferentServices(serviceName: string,numberOfRecords: number, carrier: string): Promise<void>{   //In the method we can quote different types of services eg: fastest, cheapest or specific carrier                        
 
         if (serviceName == "Fastest") {   //Validating condition if it is fastest
@@ -265,8 +278,8 @@ export class ShipManagerPage extends PlaywrightWrapper{
             
         if (invoiceType === `Help me generate`) {
             await this.clickButton(`//mat-select[@placeholder='Select Invoice']`,`Commercial Invoice`,`DropDown`)  // commercial invoice dropdown clicked
-            await this.clickButton(`//span[text()='Help Me Generate']`,`Help Me Generate`,`Button`)              // Clicking invoice type Help me generate
-            await this.clickButton(`//button[@class='btn-icon ml-12 ng-star-inserted']`,`Edit`,`Button`)
+            await this.clickButton(`//span[text()=' Help Me Generate ']`,`Help Me Generate`,`Button`)              // Clicking invoice type Help me generate
+            await this.clickButton(`//button[@class='btn-icon ml-12 ng-star-inserted']`,`Edit`,`Button`)         // Clicking Edit Icon
             if (paperOrDigital === `Paper`) {
                 await this.clickButton(`//div[text()=' Paper Commercial Invoice (Attach to box) ']`,`PaperInvoice`,`Radio Button`)
             }

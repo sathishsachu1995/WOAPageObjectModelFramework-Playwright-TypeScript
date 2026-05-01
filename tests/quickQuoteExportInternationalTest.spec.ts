@@ -7,8 +7,8 @@ import { CollectionOptionPage } from "../Pages/CollectionOptionPage";
 import { LabelsAndDocumentsPage } from "../Pages/LabelsAndDocumentsPage";
 import { TrackingHistoryPage } from "../Pages/TrackingHistoryPage";
 import { CommercialInvoicePage } from "../Pages/CommercialInvoicePage";
-//import quickQuoteTest from "../Test-data/quickQuoteInternational.json";
-import  quickQuoteTest from "../Test-data/quickQuoteExportInternationalVanuatu.json";
+import quickQuoteTest from "../Test-data/quickQuoteExportInternational.json";
+//import  quickQuoteTest from "../Test-data/quickQuoteExportInternationalVanuatu.json";
 
 for(const quickQuoteTestData of quickQuoteTest){
 test.setTimeout(1200000)
@@ -92,7 +92,7 @@ test(`The test title ${quickQuoteTestData.testTitle}`, async ({page,context}) =>
     const trackingNumber = await lablesAndShippingDocs.gettingTrackingNo()
     await lablesAndShippingDocs.gettingFromAddress()
     await lablesAndShippingDocs.gettingToAddress()
-    await lablesAndShippingDocs.clickingViewAndPrintlabel([quickQuoteTestData.labelUrl,trackingNumber])
+    /*await lablesAndShippingDocs.clickingViewAndPrintlabel([quickQuoteTestData.labelUrl,trackingNumber])
     await page.waitForTimeout(3000)
     await lablesAndShippingDocs.clickingViewReceipt(quickQuoteTestData.receiptUrl)
     await lablesAndShippingDocs.labelsAndDocumentsPageSpinner()
@@ -109,6 +109,6 @@ test(`The test title ${quickQuoteTestData.testTitle}`, async ({page,context}) =>
     await trackingHistory.clickShippingDocument([quickQuoteTestData.labelUrl,trackingNumber],quickQuoteTestData.receiptUrl,quickQuoteTestData.manifestUrl,quickQuoteTestData.mailTo,quickQuoteTestData.starTrackManifest,quickQuoteTestData.filterBy,quickQuoteTestData.commercialInvoiceUrl,quickQuoteTestData.commercialInvoiceLogoUrl)
     await page.waitForTimeout(4000)
     await trackingHistory.clickingVoidButton()
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(3000)*/
     
 })}

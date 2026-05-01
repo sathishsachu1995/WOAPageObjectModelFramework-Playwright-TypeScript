@@ -6,7 +6,7 @@
     "carrier": "UPS",
     "numberOfRecords": 1,
     "pages": "100",
-    "invoiceType": "Upload own invoice",
+    "invoiceType": "Help me generate",
     "paperOrDigital": "Paper",
     "eORI": 100200,
     "iTNNumber": "",

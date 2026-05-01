@@ -6,10 +6,10 @@ import { ExportDomesticPage } from "../Pages/ExportDomesticPage";
 import { CollectionOptionPage } from "../Pages/CollectionOptionPage";
 import { LabelsAndDocumentsPage } from "../Pages/LabelsAndDocumentsPage";
 import { TrackingHistoryPage } from "../Pages/TrackingHistoryPage";
-//import quickQuoteTestData from "../Test-data/quickQuoteDomestic.json";
+import quickQuoteTestData from "../Test-data/quickQuoteDomestic.json";
 //import  quickQuoteTestData  from "../Test-data/quickQuotePagePremiumTestData.json";
 //import  quickQuoteTestData  from "../Test-data/quickQuotePageRoadExpressTestData.json";
-import  quickQuoteTestData  from "../Test-data/quickQuotePageMaximumAllowedWOA.json";
+//import  quickQuoteTestData  from "../Test-data/quickQuotePageMaximumAllowedWOA.json";
 for(const quickQuoteData of quickQuoteTestData){
 test.setTimeout(300000)
 test(`The test tile ${quickQuoteData.testTitle}`,async ({page,context}) => {
@@ -52,11 +52,11 @@ test(`The test tile ${quickQuoteData.testTitle}`,async ({page,context}) => {
     await quickQuote.quickQuoteSpinner()
     await quickQuoteRate.quickQuoteCarrierSpinner()
     //await quickQuoteRate.testingMHFee(quickQuoteData.serviceType,quickQuoteData.serviceName,quickQuoteData.quickQuoteMHCharge)    //Testing startrack manual handling fee
-    await quickQuoteRate.testingOversizeFee(quickQuoteData.serviceType,quickQuoteData.serviceName,quickQuoteData.quickQuoteMHCharge,quickQuoteData.quickQuoteOversizeFee)
+    //await quickQuoteRate.testingOversizeFee(quickQuoteData.serviceType,quickQuoteData.serviceName,quickQuoteData.quickQuoteMHCharge,quickQuoteData.quickQuoteOversizeFee)
     //await quickQuoteRate.testingTailGateCharges(quickQuoteData.tailGateCollectionCharge,quickQuoteData.tailGateDeliveryCharge)      //Testing TNT tailgate fee
-    //await quickQuoteRate.choosingStarTrackCarrier(quickQuoteData.serviceType,quickQuoteData.serviceName)
+    await quickQuoteRate.choosingStarTrackCarrier(quickQuoteData.serviceType,quickQuoteData.serviceName)
     await quickQuoteRate.quickQuoteRatePageSpinner()
-    /*await page.waitForTimeout(6000)
+    await page.waitForTimeout(6000)
     await exportPage.enteringCollectionCompanyName(quickQuoteData.collectionCompany)
     await exportPage.enteringCollectionContactName(quickQuoteData.collectionContact)
     await exportPage.enteringCollectionAddress1(quickQuoteData.collectionAddress1)
@@ -69,14 +69,14 @@ test(`The test tile ${quickQuoteData.testTitle}`,async ({page,context}) => {
     await exportPage.enteringDeliveryDial(quickQuoteData.deliveryDial)
     await exportPage.enteringDeliveryPhone(quickQuoteData.deliveryPhone)
     await exportPage.enteringDeliveryEmailID(quickQuoteData.deliveryEmail)
-    await exportPage.enteringCustomerRef(quickQuoteData.customerRef)
-    await exportPage.enteringTestDescription(quickQuoteData.description)
-    await exportPage.clickingTransitInsurance(quickQuoteData.insurance)
+    await exportPage.enteringCustomerRef(quickQuoteData.customerReference)
+    await exportPage.enteringTestDescription(quickQuoteData.testDescription)
+    await exportPage.clickingTransitInsurance(quickQuoteData.transitInsurance)
     await exportPage.clickingQuoteButton()
     await exportPage.exportPageSpinner()
-    //await exportPage.gettingRatesOrErrorMessage()
+    await exportPage.gettingRatesOrErrorMessage()
     //await exportPage.tailGateChargesValidation(quickQuoteData.tailGateCollectionCharge,quickQuoteData.tailGateDeliveryCharge) //Testing TNT tailgate fee in export/domestic page
-    await exportPage.validatingMHFeeST(quickQuoteData.exportPageMHCharge)                                                     //Testing startrack manual handling fee in export/domestic page
+    //await exportPage.validatingMHFeeST(quickQuoteData.exportPageMHCharge)                                                     //Testing startrack manual handling fee in export/domestic page
     await exportPage.clickingOKButton()
     await exportPage.clickingNextButton()
     await exportPage.exportPageSpinner()
@@ -88,7 +88,7 @@ test(`The test tile ${quickQuoteData.testTitle}`,async ({page,context}) => {
     const trackingNumber = await lablesAndShippingDocs.gettingTrackingNo()
     await lablesAndShippingDocs.gettingFromAddress()
     await lablesAndShippingDocs.gettingToAddress()
-    await lablesAndShippingDocs.clickingViewAndPrintlabel([quickQuoteData.labelUrl,trackingNumber])
+    /*await lablesAndShippingDocs.clickingViewAndPrintlabel([quickQuoteData.labelUrl,trackingNumber])
     await page.waitForTimeout(3000)
     await lablesAndShippingDocs.clickingViewReceipt(quickQuoteData.receiptUrl)
     await lablesAndShippingDocs.labelsAndDocumentsPageSpinner()

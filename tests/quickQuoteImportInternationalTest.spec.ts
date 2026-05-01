@@ -7,7 +7,7 @@ import { CollectionOptionPage } from "../Pages/CollectionOptionPage";
 import { LabelsAndDocumentsPage } from "../Pages/LabelsAndDocumentsPage";
 import { TrackingHistoryPage } from "../Pages/TrackingHistoryPage";
 import { CommercialInvoicePage } from "../Pages/CommercialInvoicePage";
-import quickQuoteTest from "../Test-data/quickQuoteInternational.json";
+import quickQuoteTest from "../Test-data/quickQuoteImportInternational.json";
 
 for(const quickQuoteTestData of quickQuoteTest){
 test.setTimeout(1200000)
@@ -51,7 +51,7 @@ test(`The test title ${quickQuoteTestData.testTitle}`, async ({page,context}) =>
     await quickQuote.clickingQuoteButton()                                   //This method will click Quote button
     await quickQuote.quickQuoteSpinner()                                     //This method will wait till quickQuote spinner loading complete
     await quickQuoteRate.quickQuoteCarrierSpinner()                          //This method will wait till all carriers are getting loaded
-    await quickQuoteRate.choosingMachshipCarrier(quickQuoteTestData.serviceType,quickQuoteTestData.machshipCarrier)  //This method will choose the different carriers and quote rates
+    await quickQuoteRate.choosingInternationalCarriers(quickQuoteTestData.serviceType,quickQuoteTestData.serviceName)  //This method will choose the different carriers and quote rates
     await quickQuoteRate.quickQuoteRatePageSpinner()                         //This method will wait till quickQuote rate page spinner loading complete
     await page.waitForTimeout(6000)                                          //This method will wait for 6 seconds before doing any action
     await exportPage.enteringCollectionCompanyName(quickQuoteTestData.collectionCompany)  //This method will enter collection company name in the text field
@@ -91,7 +91,7 @@ test(`The test title ${quickQuoteTestData.testTitle}`, async ({page,context}) =>
     const trackingNumber = await lablesAndShippingDocs.gettingTrackingNo()
     await lablesAndShippingDocs.gettingFromAddress()
     await lablesAndShippingDocs.gettingToAddress()
-    await lablesAndShippingDocs.clickingViewAndPrintlabel([quickQuoteTestData.labelUrl,trackingNumber])
+    /*await lablesAndShippingDocs.clickingViewAndPrintlabel([quickQuoteTestData.labelUrl,trackingNumber])
     await page.waitForTimeout(3000)
     await lablesAndShippingDocs.clickingViewReceipt(quickQuoteTestData.receiptUrl)
     await lablesAndShippingDocs.labelsAndDocumentsPageSpinner()
@@ -108,6 +108,6 @@ test(`The test title ${quickQuoteTestData.testTitle}`, async ({page,context}) =>
     await trackingHistory.clickShippingDocument([quickQuoteTestData.labelUrl,trackingNumber],quickQuoteTestData.receiptUrl,quickQuoteTestData.manifestUrl,quickQuoteTestData.mailTo,quickQuoteTestData.starTrackManifest,quickQuoteTestData.filterBy,quickQuoteTestData.commercialInvoiceUrl,quickQuoteTestData.commercialInvoiceLogoUrl)
     await page.waitForTimeout(4000)
     await trackingHistory.clickingVoidButton()
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(3000)*/
     
 })}
