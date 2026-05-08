@@ -151,7 +151,7 @@
     "sourceCountry": "AUSTRALIA",
     "commodityCode": 123456,
     "quantity": 2,
-    "unitPrice": 100,
+    "unitPrice": 50,
     "date": "31",
     "parcelReadyFrom": "11:00 AM",
     "latestPickupTime": "4:00 PM",

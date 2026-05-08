@@ -5,7 +5,7 @@ import { CollectionOptionPage } from "../Pages/CollectionOptionPage";
 import { LabelsAndDocumentsPage } from "../Pages/LabelsAndDocumentsPage";
 import { TrackingHistoryPage } from "../Pages/TrackingHistoryPage";
 import { CommercialInvoicePage } from "../Pages/CommercialInvoicePage";
-import importTest from "../Test-data/importInternational.json";
+import importTest from "../Test-data/importInternationalTestData.json";
 //import importTest from "../Test-data/importVanuatu.json"
 
 for(const importTestData of importTest){

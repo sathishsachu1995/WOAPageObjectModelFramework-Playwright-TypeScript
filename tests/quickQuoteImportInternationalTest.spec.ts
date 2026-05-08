@@ -7,7 +7,8 @@ import { CollectionOptionPage } from "../Pages/CollectionOptionPage";
 import { LabelsAndDocumentsPage } from "../Pages/LabelsAndDocumentsPage";
 import { TrackingHistoryPage } from "../Pages/TrackingHistoryPage";
 import { CommercialInvoicePage } from "../Pages/CommercialInvoicePage";
-import quickQuoteTest from "../Test-data/quickQuoteImportInternational.json";
+//import quickQuoteTest from "../Test-data/quickQuoteImportInternational.json";
+import quickQuoteTest from "../Test-data/quickQuoteMachshipImportIntl.json";
 
 for(const quickQuoteTestData of quickQuoteTest){
 test.setTimeout(1200000)
@@ -51,7 +52,8 @@ test(`The test title ${quickQuoteTestData.testTitle}`, async ({page,context}) =>
     await quickQuote.clickingQuoteButton()                                   //This method will click Quote button
     await quickQuote.quickQuoteSpinner()                                     //This method will wait till quickQuote spinner loading complete
     await quickQuoteRate.quickQuoteCarrierSpinner()                          //This method will wait till all carriers are getting loaded
-    await quickQuoteRate.choosingInternationalCarriers(quickQuoteTestData.serviceType,quickQuoteTestData.serviceName)  //This method will choose the different carriers and quote rates
+    //await quickQuoteRate.choosingInternationalCarriers(quickQuoteTestData.serviceType,quickQuoteTestData.serviceName)  //This method will choose the different carriers and quote rates
+    await quickQuoteRate.choosingMachshipCarrier(quickQuoteTestData.serviceType,quickQuoteTestData.machshipCarrier)
     await quickQuoteRate.quickQuoteRatePageSpinner()                         //This method will wait till quickQuote rate page spinner loading complete
     await page.waitForTimeout(6000)                                          //This method will wait for 6 seconds before doing any action
     await exportPage.enteringCollectionCompanyName(quickQuoteTestData.collectionCompany)  //This method will enter collection company name in the text field

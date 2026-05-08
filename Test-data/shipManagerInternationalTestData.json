@@ -1,10 +1,10 @@
 {
 
-    "testTitle": "TC0001 Domestic shipment validation",
-    "template": "SKU",
+    "testTitle": "TC0001 International shipment validation",
+    "template": "Batch Shipment Template",
     "serviceName": "Specific Carrier",
-    "carrier": "UPS",
-    "numberOfRecords": 1,
+    "carrier": "Machship",
+    "numberOfRecords": 6,
     "pages": "100",
     "invoiceType": "Help me generate",
     "paperOrDigital": "Paper",

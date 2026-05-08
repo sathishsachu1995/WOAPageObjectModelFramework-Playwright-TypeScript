@@ -18,7 +18,7 @@ export class CommercialInvoicePage extends PlaywrightWrapper{
             
         if (invoiceType === `Help me generate`) {
             await this.clickButton(`(//mat-select[@placeholder='Select country'])[4]`,`Commercial Invoice`,`DropDown`)  // commercial invoice dropdown clicked
-            await this.clickButton(`(//span[text()='Help Me Generate'])[2]`,`Help Me Generate`,`Button`)                // Clicking invoice type Help me generate
+            await this.clickButton(`(//span[text()='Help Me Generate'])[1]`,`Help Me Generate`,`Button`)                // Clicking invoice type Help me generate
             if (paperOrDigital === `Paper`) {
                 await this.clickButton(`//div[text()=' Paper Commercial Invoice (Attach to box) ']`,`PaperInvoice`,`Radio Button`)
             }
@@ -74,7 +74,7 @@ export class CommercialInvoicePage extends PlaywrightWrapper{
         else if(invoiceType === `Upload own invoice`)
         {
             await this.clickButton(`(//mat-select[@placeholder='Select country'])[4]`,`Commercial Invoice`,`DropDown`)
-            await this.clickButton(`//span[text()='Upload your own PDF invoice']`,`Upload Own Invoice`,`Button`)
+            await this.clickButton(`(//span[text()='Upload your own PDF invoice'])[1]`,`Upload Own Invoice`,`Button`)
             await this.uploadFile(`input[type='file']`,`Uploads/sathish.pdf`)
             await this.clickButton(`(//button[text()='Next'])[2]`,`Next`,`Button`)
         }
